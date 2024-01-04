@@ -1,11 +1,11 @@
 {
   "name": "@wondercraft/create-wonderplate-shopify",
-  "version": "0.0.22",
+  "version": "0.0.24",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs --dts --minify --legacy-output dist/index.js",
-    "pub:release": "npm run build && npm publish"
+    "build": "tsup",
+    "pub": "npm run build && npm publish"
   },
   "type": "module",
   "exports": "./dist/index.js",
@@ -18,7 +18,12 @@
   "engines": {
     "node": ">=18.17.0"
   },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "ora": "^8.0.1"
+  },
   "devDependencies": {
+    "@types/node": "^20.10.6",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   }
