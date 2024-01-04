@@ -5,7 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "shopify:dev": "shopify theme dev  --store $npm_package_config_store --port $npm_package_config_port",
+    "shopify:push": "shopify theme push --ignore=templates/*.json, config/*.json"
+  },
+  "config": {
+    "store": "store-name",
+    "port": 8080
   },
   "dependencies": {
     "vite": "^5.0.10"
