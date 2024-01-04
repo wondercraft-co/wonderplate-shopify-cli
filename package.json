@@ -10,7 +10,7 @@
   "type": "module",
   "exports": "./index.js",
   "bin": {
-    "@wondercraft/wonderplate-shopify-cli": "./index.js"
+    "@wondercraft/create-wonderplate-shopify": "./index.js"
   },
   "keywords": [],
   "author": "",
