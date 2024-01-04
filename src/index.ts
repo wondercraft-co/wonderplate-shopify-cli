@@ -33,7 +33,12 @@ const init = async () => {
   const pkgJson = fs.readJSONSync(
     path.join(projectDir, "package.json")
   ) as PackageJson;
+
+  // Update package.json with users input
   pkgJson.name = project.name;
+  if (project.storeName) {
+    pkgJson.config.store = project.storeName;
+  }
 
   // Configuring tailwind
   if (project.tailwind) {

@@ -11,6 +11,21 @@ export const runCli = async () => {
         placeholder: DEFAULT_PROJECT_NAME,
       });
     },
+    storeName: () => {
+      return p.text({
+        message:
+          "What is the handle of your Shopify store (without myshopify.com)?",
+        placeholder: "my-store-handle",
+        validate: (input) => {
+          if (input.includes("myshopify.com")) {
+            return "Please enter the handle of your store without the myshopify.com";
+          }
+          if (input.includes("/") || input.includes(".")) {
+            return "Please enter the handle of your store without slashes or dots";
+          }
+        },
+      });
+    },
     tailwind: () => {
       return p.confirm({
         message: "Will you be using Tailwind CSS for styling?",
