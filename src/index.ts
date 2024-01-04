@@ -1,12 +1,10 @@
 #!/usr/bin/env node
-import extract from "extract-zip";
 import fs from "fs-extra";
 import ora from "ora";
 import path from "path";
 import { PKG_ROOT } from "~/consts.js";
 import { runCli } from "./helpers/runCli.js";
 
-import { execSync } from "child_process";
 import { type PackageJson } from "type-fest";
 import downloadTheme from "./helpers/downloadTheme.js";
 
