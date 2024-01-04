@@ -2,6 +2,13 @@ import * as p from "@clack/prompts";
 
 const DEFAULT_PROJECT_NAME = "wonderplate-shopify";
 
+type ThemeOptionsLabels = "dawn" | "no";
+type ThemeOptions = {
+  value: ThemeOptionsLabels;
+  hint?: string;
+  label?: string;
+}[];
+
 export const runCli = async () => {
   const project = await p.group({
     name: () => {
@@ -24,6 +31,16 @@ export const runCli = async () => {
             return "Please enter the handle of your store without slashes or dots";
           }
         },
+      });
+    },
+    downloadTheme: () => {
+      return p.select<ThemeOptions, ThemeOptionsLabels>({
+        message: "Do you want to download a theme?",
+        options: [
+          { label: "Dawn", value: "dawn" },
+          { label: "No", value: "no" },
+        ],
+        initialValue: "no",
       });
     },
     tailwind: () => {

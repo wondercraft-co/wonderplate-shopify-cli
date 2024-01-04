@@ -1,11 +1,14 @@
 #!/usr/bin/env node
-import ora from "ora";
+import extract from "extract-zip";
 import fs from "fs-extra";
+import ora from "ora";
 import path from "path";
 import { PKG_ROOT } from "~/consts.js";
 import { runCli } from "./helpers/runCli.js";
 
+import { execSync } from "child_process";
 import { type PackageJson } from "type-fest";
+import downloadTheme from "./helpers/downloadTheme.js";
 
 console.log(`
  _    _  _____  _  _  ____  ____  ____  ____  __      __   ____  ____ 
@@ -50,6 +53,13 @@ const init = async () => {
     delete pkgJson.devDependencies["autoprefixer"];
     delete pkgJson.devDependencies["postcss"];
     fs.removeSync(path.join(projectDir, "src/styles/tailwind.css"));
+  }
+
+  // Download theme
+  const themeName = project.downloadTheme;
+  if (themeName === "dawn") {
+    spinner.info(`Downloading ${themeName} theme...`);
+    await downloadTheme(themeName, projectDir);
   }
 
   //Update package.json
