@@ -14,10 +14,22 @@ const init = async () => {
   const srcDir = path.join(PKG_ROOT, "template");
 
   const project = await runCli();
-  
+
   const spinner = ora(`Scaffolding in: ${projectDir}...\n`).start();
-  fs.copySync(srcDir, projectDir);
-  process.exit(0); 
+
+  // Copying root config files
+  ["package.json", "vite.config.ts"].forEach((file) => {
+    fs.copySync(path.join(srcDir, file), projectDir);
+  });
+
+  // configuring tailwind
+  if (project.tailwind) {
+    fs.copySync(
+      path.join(srcDir, "tailwind.config.js", "postcss.config.js"),
+      projectDir
+    );
+  }
+  process.exit(0);
 };
 
 init();
