@@ -1,11 +1,16 @@
 {
   "name": "@wondercraft/wonderplate-shopify-cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "access": "public",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "exports": "./index.js",
+  "bin": {
+    "@wondercraft/wonderplate-shopify-cli": "./index.js"
   },
   "keywords": [],
   "author": "",
