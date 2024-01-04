@@ -12,8 +12,8 @@ You do not get a full shopify theme, you will need to add the required files you
 
 ## Usage
 
-```
- npm create @wondercraft/wonderplate-shopify@latest
+```bash
+npm create @wondercraft/wonderplate-shopify@latest
 ```
 
 ## Contribute
