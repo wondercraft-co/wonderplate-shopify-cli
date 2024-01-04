@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import ora from "ora";
+import fs from "fs-extra";
 import path from "path";
 import { PKG_ROOT } from "~/consts.js";
 import { runCli } from "./helpers/runCli.js";
@@ -15,7 +16,7 @@ const init = async () => {
   const project = await runCli();
   
   const spinner = ora(`Scaffolding in: ${projectDir}...\n`).start();
-  // fs.copySync(srcDir, projectDir);
+  fs.copySync(srcDir, projectDir);
   process.exit(0); 
 };
 
