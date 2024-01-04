@@ -1,18 +1,25 @@
 {
   "name": "@wondercraft/create-wonderplate-shopify",
-  "version": "0.0.2",
+  "version": "0.0.22",
   "description": "",
   "main": "index.js",
-  "access": "public",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup src/index.ts --format cjs --dts --minify --legacy-output dist/index.js",
+    "pub:release": "npm run build && npm publish"
   },
   "type": "module",
-  "exports": "./index.js",
+  "exports": "./dist/index.js",
   "bin": {
-    "@wondercraft/create-wonderplate-shopify": "./index.js"
+    "@wondercraft/create-wonderplate-shopify": "./dist/index.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
 }
