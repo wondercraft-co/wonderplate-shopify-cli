@@ -10,6 +10,8 @@ What do you get when you run the command:
 
 You do not get a full shopify theme, you will need to add the required files yourself. You can [download Dawn](https://github.com/Shopify/dawn) from the shopify git page. or it can be provided by the client.
 
+This CLI is heavily inspired by the [create-t3-app](https://github.com/t3-oss/create-t3-app) project.
+
 ## Usage
 
 ```bash
