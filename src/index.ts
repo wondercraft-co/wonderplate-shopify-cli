@@ -8,7 +8,6 @@ console.log("******************************");
 console.log("**********  index.js *********");
 console.log("******************************");
 
-const projectDir = process.argv[2];
 
 const init = async () => {
   const projectDir = path.resolve(process.cwd());
@@ -18,7 +17,7 @@ const init = async () => {
   const spinner = ora(`Scaffolding in: ${projectDir}...\n`).start();
 
   fs.copySync(srcDir, projectDir);
-  process.exit(1);
+  process.exit(0);
 };
 
 init();

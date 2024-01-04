@@ -1,2 +1,4 @@
 node_modules
 dist
+template/package-lock.json
+assets
