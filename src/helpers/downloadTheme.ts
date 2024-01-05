@@ -14,6 +14,8 @@ export default async function downloadTheme(
   themeName: keyof typeof themesZip,
   projectDir: string
 ) {
+
+  // download zip theme with curl so it follows redirects
   const cmd = `curl --output theme.zip -L -O ${themesZip[themeName].zip}`;
   execSync(cmd);
 
@@ -25,8 +27,22 @@ export default async function downloadTheme(
       console.error("Error occurred while extracting zip file", err)
     );
 
-  fs.rename(
-    path.join(projectDir, themesZip[themeName].extracted),
-    path.join(projectDir, "shopify")
-  );
+  const extractedFolder = path.join(projectDir, themesZip[themeName].extracted);
+
+  // Move all files from extracted folder to project root
+  fs.readdirSync(extractedFolder).forEach((file) => {
+    if (
+      !file.startsWith(".") &&
+      fs.lstatSync(path.join(extractedFolder, file)).isDirectory()
+    ) {
+      fs.moveSync(
+        path.join(extractedFolder, file),
+        path.join(projectDir, file)
+      );
+    }
+  });
+
+  // Cleanup extracted folder and zip file
+  fs.removeSync(extractedFolder);
+  fs.removeSync(path.join(projectDir, "theme.zip"));
 }
