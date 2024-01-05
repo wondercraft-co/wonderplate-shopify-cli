@@ -48,10 +48,20 @@ const init = async () => {
     ["tailwind.config.js", "postcss.config.js"].forEach((file) => {
       fs.copySync(path.join(srcDir, file), path.join(projectDir, file));
     });
+
+    const pkgDeps = fs.readJSONSync(
+      path.join(PKG_ROOT, "src/packageMappers/package.tailwind.json")
+    ) as PackageJson;
+
+    pkgJson.dependencies = {
+      ...pkgJson.dependencies,
+      ...pkgDeps.dependencies,
+    };
+    pkgJson.devDependencies = {
+      ...pkgJson.devDependencies,
+      ...pkgDeps.devDependencies,
+    };
   } else {
-    delete pkgJson.devDependencies["tailwindcss"];
-    delete pkgJson.devDependencies["autoprefixer"];
-    delete pkgJson.devDependencies["postcss"];
     fs.removeSync(path.join(projectDir, "src/styles/tailwind.css"));
   }
 
@@ -60,6 +70,28 @@ const init = async () => {
   if (themeName === "dawn") {
     spinner.info(`Downloading ${themeName} theme...`);
     await downloadTheme(themeName, projectDir);
+  }
+
+  // Install Js frameworks
+  const jsFramework = project.jsFramework;
+  if (jsFramework !== "alpine") {
+    spinner.info(`Installing ${jsFramework}...`);
+    const pkgDeps = fs.readJSONSync(
+      path.join(
+        PKG_ROOT,
+        `src/packageMappers/package.${jsFramework}.json`
+      )
+    ) as PackageJson;
+
+    pkgJson.dependencies = {
+      ...pkgJson.dependencies,
+      ...pkgDeps.dependencies,
+    };
+    pkgJson.devDependencies = {
+      ...pkgJson.devDependencies,
+      ...pkgDeps.devDependencies,
+    };
+    //TODO: Add framework specific config files
   }
 
   //Update package.json

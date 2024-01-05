@@ -1,6 +1,7 @@
 /** @type {import('vite').UserConfig} */
 import fs from "fs";
 import path from "path";
+import { defineConfig } from "vite";
 
 const inputDir = "./src";
 
@@ -17,7 +18,7 @@ const entries = (subDir = "") =>
       return entries;
     }, {});
 
-export default {
+export default defineConfig({
   build: {
     outDir: "assets",
     emptyOutDir: false,
@@ -33,8 +34,8 @@ export default {
         assetFileNames: `[name].[ext]`,
       },
     },
-    rollupOutputOptions: {
-      entryFileNames: "[name]",
+    watch: {
+      include: ["./src/**"],
     },
   },
-};
+});

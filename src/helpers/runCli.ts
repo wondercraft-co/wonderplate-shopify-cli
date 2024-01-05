@@ -2,9 +2,10 @@ import * as p from "@clack/prompts";
 
 const DEFAULT_PROJECT_NAME = "wonderplate-shopify";
 
-type ThemeOptionsLabels = "dawn" | "no";
-type ThemeOptions = {
-  value: ThemeOptionsLabels;
+type ThemeOptionsLabels = "dawn" | "none";
+type FrameworkOptionsLabels = "react" | "vue" | "alpine" | "htmx" | "none";
+type ThemeOptions<T> = {
+  value: T;
   hint?: string;
   label?: string;
 }[];
@@ -34,14 +35,27 @@ export const runCli = async () => {
           },
         });
       },
+      jsFramework: () => {
+        return p.select<ThemeOptions<FrameworkOptionsLabels>, FrameworkOptionsLabels>({
+          message: "Which JS framework will you be using? NOT YET IMPLEMENTED",
+          options: [
+            { label: "None", value: "none" },
+            { label: "React", value: "react" },
+            { label: "Vue", value: "vue" },
+            { label: "Alpine", value: "alpine" },
+            { label: "HTMX", value: "htmx" },
+          ],
+          initialValue: "none",
+        });
+      },
       downloadTheme: () => {
-        return p.select<ThemeOptions, ThemeOptionsLabels>({
+        return p.select<ThemeOptions<ThemeOptionsLabels>, ThemeOptionsLabels>({
           message: "Do you want to download a theme?",
           options: [
+            { label: "None", value: "none" },
             { label: "Dawn", value: "dawn" },
-            { label: "No", value: "no" },
           ],
-          initialValue: "no",
+          initialValue: "none",
         });
       },
       tailwind: () => {
