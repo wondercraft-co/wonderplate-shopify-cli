@@ -88,11 +88,10 @@ const init = async () => {
       ...pkgJson.devDependencies,
       ...pkgDeps.devDependencies,
     };
-    //TODO: Add framework specific config files
-    const str = `import Alpine from 'alpinejs'\nwindow.Alpine = Alpine\nAlpine.start()\n`;
+    const appJsStr = `import Alpine from 'alpinejs'\nwindow.Alpine = Alpine\nAlpine.start()\n`;
     await fs.appendFileSync(
       path.join(projectDir, "src/app.js"),
-      str,
+      appJsStr,
       function (err) {
         if (err) throw err;
         console.log("Saved!");
