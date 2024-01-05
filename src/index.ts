@@ -24,9 +24,11 @@ const init = async () => {
   const spinner = ora(`Scaffolding in: ${projectDir}...\n`).start();
 
   // Copying root config files
-  ["package.json", "vite.config.ts"].forEach((file) => {
-    fs.copySync(path.join(srcDir, file), path.join(projectDir, file));
-  });
+  ["package.json", "vite.config.ts", ".shopifyignore", ".gitignore"].forEach(
+    (file) => {
+      fs.copySync(path.join(srcDir, file), path.join(projectDir, file));
+    }
+  );
 
   //Copying src files
   fs.copySync(path.join(srcDir, "src"), path.join(projectDir, "src"));
