@@ -1,0 +1,42 @@
+{{#if javascript}}
+<script type="module">
+  import {{ pascalCase name }} from '\{{ '{{ dashCase name }}.js' | asset_url }}';
+  {{ pascalCase name }}.init("#section-\{{ section.id }}")
+</script>
+{{/if}}
+
+{{#if css}}
+\{{ '{{ dashCase name }}.css' | asset_url | stylesheet_tag }}
+{{/if}}
+
+<style>
+  #section-{{ section.id }} {
+  }
+</style>
+
+<div
+  id="section-\{{ section.id }}"
+  class="section-{{ dashCase name }}"
+  data-{{dashCase name}}
+>
+  <h2>\{{ section.settings.title }}</h2>
+</div>
+
+{% schema %}
+  {
+    "name": "{{ name }}",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "{{ name }}",
+        "default": "{{ name }}"
+      }
+    ],
+    "presets": [
+      {
+        "name": "{{ name }}"
+      }
+    ]
+  }
+{% endschema %}

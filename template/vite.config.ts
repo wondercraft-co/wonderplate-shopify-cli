@@ -3,15 +3,12 @@ import fs from "fs";
 import path from "path";
 import { defineConfig } from "vite";
 
-const inputDir = "./src";
+const inputDir = "./_src";
 
 const entries = (subDir = "") =>
   fs
     .readdirSync(path.resolve(__dirname, inputDir, subDir))
-    .filter(
-      (file) =>
-        file.endsWith(".js") || file.endsWith(".scss") || file.endsWith(".css")
-    )
+    .filter((file) => file.endsWith(".js"))
     .reduce((entries, file) => {
       const name = path.basename(file, ".js"); // get the file name without the extension
       entries[path.join(name)] = path.join(inputDir, subDir, file); // add the entry to the entries object
@@ -23,10 +20,11 @@ export default defineConfig({
     outDir: "assets",
     emptyOutDir: false,
     rollupOptions: {
+      preserveEntrySignatures: "allow-extension",
       input: {
-        app: "src/app.js",
-        ...entries("scripts/components"),
-        ...entries("styles"),
+        app: "_src/js/app.js",
+        styles: "_src/styles/main.scss",
+        ...entries("js/sections"),
       },
       output: {
         entryFileNames: `[name].js`,
@@ -35,7 +33,7 @@ export default defineConfig({
       },
     },
     watch: {
-      include: ["./src/**"],
+      include: ["./_src/**"],
     },
   },
 });

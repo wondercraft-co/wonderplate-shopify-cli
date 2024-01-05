@@ -31,7 +31,7 @@ const init = async () => {
   );
 
   //Copying src files
-  fs.copySync(path.join(srcDir, "src"), path.join(projectDir, "src"));
+  fs.copySync(path.join(srcDir, "_src"), path.join(projectDir, "_src"));
 
   const pkgJson = fs.readJSONSync(
     path.join(projectDir, "package.json")
@@ -61,8 +61,18 @@ const init = async () => {
       ...pkgJson.devDependencies,
       ...pkgDeps.devDependencies,
     };
+
+    const tailwindStr = `@tailwind base;\n@tailwind components;\n@tailwind utilities;`;
+    await fs.appendFileSync(
+      path.join(projectDir, "_src/styles/main.scss"),
+      tailwindStr,
+      function (err) {
+        if (err) throw err;
+        console.log("Saved!");
+      }
+    );
   } else {
-    fs.removeSync(path.join(projectDir, "src/styles/tailwind.css"));
+    fs.removeSync(path.join(projectDir, "_src/styles/tailwind.css"));
   }
 
   // Download theme
@@ -90,7 +100,7 @@ const init = async () => {
     };
     const appJsStr = `import Alpine from 'alpinejs'\nwindow.Alpine = Alpine\nAlpine.start()\n`;
     await fs.appendFileSync(
-      path.join(projectDir, "src/app.js"),
+      path.join(projectDir, "_src/js/app.js"),
       appJsStr,
       function (err) {
         if (err) throw err;

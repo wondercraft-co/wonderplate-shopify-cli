@@ -1,0 +1,23 @@
+{{#if css}}import "./{{dashCase name}}.scss"{{/if}}
+
+class {{ pascalCase name}} {
+  constructor($element) {
+    this.$element = $element;
+    this.init();
+  }
+
+  init() {
+    console.log("{{name}} initialized");
+  }
+}
+
+const {{ pascalCase name}}Initializer = {
+  init(selector) {
+    const $el = document.querySelector(selector);
+    if($el){
+      new {{pascalCase name}}($el);
+    }
+  },
+};
+
+export default {{ pascalCase name }}Initializer;
