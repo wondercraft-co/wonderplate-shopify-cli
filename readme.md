@@ -33,7 +33,7 @@ TODO: look into how to make this easier with `npm link`.
 TODO: Explain how the `/packageMappers` folder works.
 
 
-### Checking dependency updates with Vscode's Version Lens
+#### Checking dependency updates with Vscode's Version Lens
 
 To  help us keep dependencies up to date we like to use [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens) in vscode. This will show you the latest version of a dependency in the package.json file.
 

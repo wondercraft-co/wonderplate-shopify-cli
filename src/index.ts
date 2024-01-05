@@ -74,13 +74,10 @@ const init = async () => {
 
   // Install Js frameworks
   const jsFramework = project.jsFramework;
-  if (jsFramework !== "alpine") {
+  if (jsFramework == "alpine") {
     spinner.info(`Installing ${jsFramework}...`);
     const pkgDeps = fs.readJSONSync(
-      path.join(
-        PKG_ROOT,
-        `src/packageMappers/package.${jsFramework}.json`
-      )
+      path.join(PKG_ROOT, `src/packageMappers/package.${jsFramework}.json`)
     ) as PackageJson;
 
     pkgJson.dependencies = {
@@ -92,6 +89,15 @@ const init = async () => {
       ...pkgDeps.devDependencies,
     };
     //TODO: Add framework specific config files
+    const str = `import Alpine from 'alpinejs'\nwindow.Alpine = Alpine\nAlpine.start()\n`;
+    await fs.appendFileSync(
+      path.join(projectDir, "src/app.js"),
+      str,
+      function (err) {
+        if (err) throw err;
+        console.log("Saved!");
+      }
+    );
   }
 
   //Update package.json
