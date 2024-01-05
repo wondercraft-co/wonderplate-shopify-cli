@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-import ora from "ora";
 import fs from "fs-extra";
+import ora from "ora";
 import path from "path";
 import { PKG_ROOT } from "~/consts.js";
 import { runCli } from "./helpers/runCli.js";
 
 import { type PackageJson } from "type-fest";
+import downloadTheme from "./helpers/downloadTheme.js";
 
 console.log(`
  _    _  _____  _  _  ____  ____  ____  ____  __      __   ____  ____ 
@@ -23,9 +24,11 @@ const init = async () => {
   const spinner = ora(`Scaffolding in: ${projectDir}...\n`).start();
 
   // Copying root config files
-  ["package.json", "vite.config.ts"].forEach((file) => {
-    fs.copySync(path.join(srcDir, file), path.join(projectDir, file));
-  });
+  ["package.json", "vite.config.ts", ".shopifyignore", ".gitignore"].forEach(
+    (file) => {
+      fs.copySync(path.join(srcDir, file), path.join(projectDir, file));
+    }
+  );
 
   //Copying src files
   fs.copySync(path.join(srcDir, "src"), path.join(projectDir, "src"));
@@ -50,6 +53,13 @@ const init = async () => {
     delete pkgJson.devDependencies["autoprefixer"];
     delete pkgJson.devDependencies["postcss"];
     fs.removeSync(path.join(projectDir, "src/styles/tailwind.css"));
+  }
+
+  // Download theme
+  const themeName = project.downloadTheme;
+  if (themeName === "dawn") {
+    spinner.info(`Downloading ${themeName} theme...`);
+    await downloadTheme(themeName, projectDir);
   }
 
   //Update package.json

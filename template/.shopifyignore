@@ -1,0 +1,7 @@
+src/*
+package.json
+package-lock.json
+postcss.config.js
+tsconfig.json
+tailwind.config.js
+vite.config.js

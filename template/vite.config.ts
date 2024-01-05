@@ -20,6 +20,7 @@ const entries = (subDir = "") =>
 export default {
   build: {
     outDir: "assets",
+    emptyOutDir: false,
     rollupOptions: {
       input: {
         app: "src/app.js",
