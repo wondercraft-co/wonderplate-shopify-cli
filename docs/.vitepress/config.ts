@@ -11,6 +11,10 @@ export default defineConfig({
       { text: "Docs", link: "/docs/getting-started" },
       { text: "Examples", link: "/markdown-examples" },
     ],
+    
+    search: {
+      provider: "local",
+    },
 
     sidebar: {
       "/docs/": {
@@ -21,8 +25,9 @@ export default defineConfig({
             collapsed: false,
             items: [
               { text: "Getting Started", link: "/getting-started" },
-              { text: "Assumptions", link: "/placeholder" },
-              { text: "Assets", link: "/placeholder" },
+              // { text: "Assumptions", link: "/placeholder" },
+              { text: "Assets", link: "/assets" },
+              { text: "Sections folder", link: "/sections-folder" },
             ],
           },
           {

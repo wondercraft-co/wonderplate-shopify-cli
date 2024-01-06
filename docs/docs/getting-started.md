@@ -24,3 +24,13 @@ To generate a new component run the following command:
 ```bash
 npm run generate
 ```
+
+
+## Update theme.liquid with generated assets
+
+Go to the `layout/theme.liquid` file and add the following code:
+
+```liquid
+<script src="{{ 'app.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'main.css' | asset_url }}" defer="defer"></script>
+```

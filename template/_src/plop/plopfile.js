@@ -12,25 +12,25 @@ export default (plop) => {
         type: "list",
         name: "type",
         message: "Select the type of component:",
-        choices: ["Section", "Snippet"],
+        choices: ["section", "snippet"],
       },
       {
         type: "confirm",
         name: "javascript",
         message: "Needs JavaScript?",
-        when: (answers) => answers.type == "Section",
+        when: (answers) => answers.type == "section",
       },
       {
         type: "confirm",
         name: "css",
         message: "Needs CSS module?",
-        when: (answers) => answers.type == "Section",
+        when: (answers) => answers.type == "section",
       },
     ],
     actions: function (data) {
       const actions = [];
 
-      if (data.type == "Section") {
+      if (data.type == "section") {
         actions.push({
           type: "add",
           path: "../../sections/{{dashCase name}}.liquid",
@@ -55,7 +55,7 @@ export default (plop) => {
         }
       }
 
-      if (data.type == "Snippet") {
+      if (data.type == "snippet") {
         actions.push({
           type: "add",
           path: "../../snippets/{{dashCase name}}.liquid",
