@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Documentation
-      link: /docs
+      link: /docs/getting-started
     - theme: alt
       text: Github
       link: https://github.com/wondercraft-co/wonderplate-shopify-cli
