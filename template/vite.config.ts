@@ -20,7 +20,11 @@ export default defineConfig({
     outDir: "assets",
     emptyOutDir: false,
     rollupOptions: {
+      // Ensures entry points with modules do not remove the exported functions
+      // Without this Vite tries to optimize and remove "unused" code which for
+      // sections code is the exported class
       preserveEntrySignatures: "allow-extension",
+
       input: {
         app: "_src/js/app.js",
         styles: "_src/styles/main.scss",
