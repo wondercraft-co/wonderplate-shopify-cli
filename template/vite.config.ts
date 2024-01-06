@@ -1,31 +1,34 @@
 /** @type {import('vite').UserConfig} */
 import fs from "fs";
 import path from "path";
+import { defineConfig } from "vite";
 
-const inputDir = "./src";
+const inputDir = "./_src";
 
 const entries = (subDir = "") =>
   fs
     .readdirSync(path.resolve(__dirname, inputDir, subDir))
-    .filter(
-      (file) =>
-        file.endsWith(".js") || file.endsWith(".scss") || file.endsWith(".css")
-    )
+    .filter((file) => file.endsWith(".js"))
     .reduce((entries, file) => {
       const name = path.basename(file, ".js"); // get the file name without the extension
       entries[path.join(name)] = path.join(inputDir, subDir, file); // add the entry to the entries object
       return entries;
     }, {});
 
-export default {
+export default defineConfig({
   build: {
     outDir: "assets",
     emptyOutDir: false,
     rollupOptions: {
+      // Ensures entry points with modules do not remove the exported functions
+      // Without this Vite tries to optimize and remove "unused" code which for
+      // sections code is the exported class
+      preserveEntrySignatures: "allow-extension",
+
       input: {
-        app: "src/app.js",
-        ...entries("scripts/components"),
-        ...entries("styles"),
+        app: "_src/js/app.js",
+        styles: "_src/styles/main.scss",
+        ...entries("js/sections"),
       },
       output: {
         entryFileNames: `[name].js`,
@@ -33,8 +36,8 @@ export default {
         assetFileNames: `[name].[ext]`,
       },
     },
-    rollupOutputOptions: {
-      entryFileNames: "[name]",
+    watch: {
+      include: ["./_src/**"],
     },
   },
-};
+});

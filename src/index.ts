@@ -31,7 +31,7 @@ const init = async () => {
   );
 
   //Copying src files
-  fs.copySync(path.join(srcDir, "src"), path.join(projectDir, "src"));
+  fs.copySync(path.join(srcDir, "_src"), path.join(projectDir, "_src"));
 
   const pkgJson = fs.readJSONSync(
     path.join(projectDir, "package.json")
@@ -48,11 +48,31 @@ const init = async () => {
     ["tailwind.config.js", "postcss.config.js"].forEach((file) => {
       fs.copySync(path.join(srcDir, file), path.join(projectDir, file));
     });
+
+    const pkgDeps = fs.readJSONSync(
+      path.join(PKG_ROOT, "src/packageMappers/package.tailwind.json")
+    ) as PackageJson;
+
+    pkgJson.dependencies = {
+      ...pkgJson.dependencies,
+      ...pkgDeps.dependencies,
+    };
+    pkgJson.devDependencies = {
+      ...pkgJson.devDependencies,
+      ...pkgDeps.devDependencies,
+    };
+
+    const tailwindStr = `@tailwind base;\n@tailwind components;\n@tailwind utilities;`;
+    await fs.appendFileSync(
+      path.join(projectDir, "_src/styles/main.scss"),
+      tailwindStr,
+      function (err) {
+        if (err) throw err;
+        console.log("Saved!");
+      }
+    );
   } else {
-    delete pkgJson.devDependencies["tailwindcss"];
-    delete pkgJson.devDependencies["autoprefixer"];
-    delete pkgJson.devDependencies["postcss"];
-    fs.removeSync(path.join(projectDir, "src/styles/tailwind.css"));
+    fs.removeSync(path.join(projectDir, "_src/styles/tailwind.css"));
   }
 
   // Download theme
@@ -60,6 +80,33 @@ const init = async () => {
   if (themeName === "dawn") {
     spinner.info(`Downloading ${themeName} theme...`);
     await downloadTheme(themeName, projectDir);
+  }
+
+  // Install Js frameworks
+  const jsFramework = project.jsFramework;
+  if (jsFramework == "alpine") {
+    spinner.info(`Installing ${jsFramework}...`);
+    const pkgDeps = fs.readJSONSync(
+      path.join(PKG_ROOT, `src/packageMappers/package.${jsFramework}.json`)
+    ) as PackageJson;
+
+    pkgJson.dependencies = {
+      ...pkgJson.dependencies,
+      ...pkgDeps.dependencies,
+    };
+    pkgJson.devDependencies = {
+      ...pkgJson.devDependencies,
+      ...pkgDeps.devDependencies,
+    };
+    const appJsStr = `import Alpine from 'alpinejs'\nwindow.Alpine = Alpine\nAlpine.start()\n`;
+    await fs.appendFileSync(
+      path.join(projectDir, "_src/js/app.js"),
+      appJsStr,
+      function (err) {
+        if (err) throw err;
+        console.log("Saved!");
+      }
+    );
   }
 
   //Update package.json

@@ -26,3 +26,19 @@ So once you clone the repo and install the dependencies you can run `npm run dev
 
 Then, to test your work, create a new folder somewhere and run the cli from that folder with `node /path/to/wonderplate-shopify/dist/index.js` and it will create a new project in the folder you are in.
 TODO: look into how to make this easier with `npm link`.
+
+
+### How to add new dependencies
+
+TODO: Explain how the `/packageMappers` folder works.
+
+
+#### Checking dependency updates with Vscode's Version Lens
+
+To  help us keep dependencies up to date we like to use [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens) in vscode. This will show you the latest version of a dependency in the package.json file.
+
+But to work with the mapping files in the folder `/packageMappers` you have to update the settings following these steps:
+
+1. Open the settings in vscode
+2. Search for `@ext:pflannery.vscode-versionlens npm`
+3. Change the **Version Lens > Npm: Files** value to `**/package*.json`
