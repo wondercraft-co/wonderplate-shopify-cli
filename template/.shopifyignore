@@ -1,7 +1,8 @@
 _src/*
 package.json
-package-lock.json
+*-lock.json
 postcss.config.js
 tsconfig.json
 tailwind.config.js
 vite.config.js
+README.md
