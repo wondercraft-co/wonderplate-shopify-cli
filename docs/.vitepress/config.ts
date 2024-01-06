@@ -12,16 +12,6 @@ export default defineConfig({
       { text: "Examples", link: "/markdown-examples" },
     ],
 
-    // sidebar: [
-    //   {
-    //     text: 'Examples',
-    //     items: [
-    //       { text: 'Markdown Examples', link: '/markdown-examples' },
-    //       { text: 'Runtime API Examples', link: '/api-examples' }
-    //     ]
-    //   },
-    // ],
-
     sidebar: {
       "/docs/": {
         base: "/docs/",
@@ -30,10 +20,17 @@ export default defineConfig({
             text: "Introduction",
             collapsed: false,
             items: [
-              { text: "Getting Started", link: "/docs/getting-started" },
-              { text: "Installation", link: "/docs/installation" },
-              { text: "Configuration", link: "/docs/configuration" },
-              { text: "Usage", link: "/docs/usage" },
+              { text: "Getting Started", link: "/getting-started" },
+              { text: "Assumptions", link: "/placeholder" },
+              { text: "Assets", link: "/placeholder" },
+            ],
+          },
+          {
+            text: "JS Frameworks",
+            collapsed: false,
+            items: [
+              { text: "Vue", link: "/vue" },
+              { text: "React", link: "/react" },
             ],
           },
         ],
@@ -41,8 +38,11 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+      {
+        icon: "github",
+        link: "https://github.com/wondercraft-co/wonderplate-shopify-cli",
+      },
     ],
   },
-  base: "/wonderplate-shopify-cli/"
+  base: "/wonderplate-shopify-cli/",
 });

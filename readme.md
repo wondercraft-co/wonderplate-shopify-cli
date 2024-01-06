@@ -42,3 +42,8 @@ But to work with the mapping files in the folder `/packageMappers` you have to u
 1. Open the settings in vscode
 2. Search for `@ext:pflannery.vscode-versionlens npm`
 3. Change the **Version Lens > Npm: Files** value to `**/package*.json`
+
+
+## Documentation
+
+We are using [VitePress](https://vitepress.dev/) to generate the documentation site. You can find the docs in the `/docs` folder.

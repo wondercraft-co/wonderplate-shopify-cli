@@ -8,7 +8,7 @@
     "build": "vite build",
     "shopify:dev": "shopify theme dev  --store $npm_package_config_store --port $npm_package_config_port",
     "shopify:push": "shopify theme push --ignore=templates/*.json, config/*.json",
-    "component": "plop --plopfile _src/plop/plopfile.js"
+    "generate": "plop --plopfile _src/plop/plopfile.js"
   },
   "config": {
     "store": "store-name",
