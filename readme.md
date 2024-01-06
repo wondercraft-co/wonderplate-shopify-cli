@@ -6,11 +6,13 @@ What do you get when you run the command:
 
 - A basic Vite setup to bundle assets
 - Tailwind CSS
-- A set of scripts to create new components using plop (TODO)
+- A set of scripts to create new components using plop
 
 You do not get a full shopify theme, you will need to add the required files yourself. You can [download Dawn](https://github.com/Shopify/dawn) from the shopify git page. or it can be provided by the client.
 
 This CLI is heavily inspired by the [create-t3-app](https://github.com/t3-oss/create-t3-app) project.
+
+For more information check the [documentation](https://wondercraft-co.github.io/wonderplate-shopify-cli/).
 
 ## Usage
 

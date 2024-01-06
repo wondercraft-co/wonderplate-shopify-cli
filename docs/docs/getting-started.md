@@ -3,7 +3,13 @@
 
 Wonderplate is a simple CLI tool to drop some very basic scaffolding for a shopify theme. It intends to be minimal and easy to extend. We do not provide a theme but a set of tools to help you build your own.
 
-## Installation
+You get:
+
+- A basic Vite setup to bundle assets.
+- Tailwind CSS.
+- A components generator.
+
+## Usage
 
 Run the CLI command and follow the prompts.
 
