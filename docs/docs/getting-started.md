@@ -3,6 +3,9 @@
 
 Wonderplate is a simple CLI tool to drop some very basic scaffolding for a shopify theme. It intends to be minimal and easy to extend. We do not provide a theme but a set of tools to help you build your own.
 
+The main use-case of the tool is when **your client already possesses a theme**, and you need to integrate a build system into it. Alternatively, it is useful if you aim to enhance a theme, such as Dawn or Debut.
+
+
 You get:
 
 - A basic Vite setup to bundle assets.
@@ -11,11 +14,24 @@ You get:
 
 ## Usage
 
-Run the CLI command and follow the prompts.
+Create a new folder or navigate to your theme's folder and run the CLI command and follow the prompts.
 
 ```bash
 npm create @wondercraft/wonderplate-shopify@latest
 ```
+
+::: warning
+The command does not create a new folder so make sure you are in the right place.
+:::
+
+Install dependencies and run the project.
+
+```bash
+npm install
+npm run dev
+```
+
+
 
 ## Generate a new component
 

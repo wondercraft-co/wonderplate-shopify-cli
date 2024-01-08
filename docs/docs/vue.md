@@ -38,7 +38,7 @@ And import the component and initialize Vue in the main js entry file `_src/js/a
 import { createApp } from "vue";
 import App from "./vue/App.vue";
 
-createApp(App).mount("#hello");
+createApp(App).mount("#app");
 ```
 
 ## State management recommendation

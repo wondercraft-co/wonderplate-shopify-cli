@@ -13,13 +13,13 @@ theme/
   └─ open-sans-regular.static.woff2
 ```
 
-2. Create a shopify snippet running the generator command: And selecting the `Snippet` option. The following command will generate the file `snippets/fonts.liquid`
+2. Create a shopify snippet running the generator command. The following command will generate the file `snippets/fonts.liquid`
 
 ```
 npm run generate -- -- --name "fonts" --type "snippet"
 ```
 
-3. Add the following code to the `snippets/fonts.liquid` file.
+3. Add the following code to the new `snippets/fonts.liquid` file.
 
 ```liquid
 {% style %}
