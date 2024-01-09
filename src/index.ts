@@ -24,11 +24,16 @@ const init = async () => {
   const spinner = ora(`Scaffolding in: ${projectDir}...\n`).start();
 
   // Copying root config files
-  ["package.json", "vite.config.ts", ".shopifyignore", ".gitignore"].forEach(
-    (file) => {
-      fs.copySync(path.join(srcDir, file), path.join(projectDir, file));
-    }
-  );
+  ["package.json", "vite.config.ts"].forEach((file) => {
+    fs.copySync(path.join(srcDir, file), path.join(projectDir, file));
+  });
+  // NPM tarballs don't include dot files, so we have to rename them
+  ["_shopifyignore", "_gitignore"].forEach((file) => {
+    fs.copySync(
+      path.join(srcDir, file),
+      path.join(projectDir, file.replace("_", "."))
+    );
+  });
 
   //Copying src files
   fs.copySync(path.join(srcDir, "_src"), path.join(projectDir, "_src"));

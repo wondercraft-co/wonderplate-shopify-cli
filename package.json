@@ -1,6 +1,6 @@
 {
   "name": "@wondercraft/create-wonderplate-shopify",
-  "version": "0.0.28",
+  "version": "0.0.204",
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
