@@ -36,14 +36,14 @@ export const runCli = async () => {
         });
       },
       jsFramework: () => {
-        return p.select<ThemeOptions<FrameworkOptionsLabels>, FrameworkOptionsLabels>({
+        return p.select<
+          ThemeOptions<FrameworkOptionsLabels>,
+          FrameworkOptionsLabels
+        >({
           message: "Which JS framework will you be using?",
           options: [
             { label: "None", value: "none" },
             { label: "Alpine", value: "alpine" },
-            { label: "React", value: "react", hint: "NOT YET IMPLEMENTED" },
-            { label: "Vue", value: "vue", hint: "NOT YET IMPLEMENTED" },
-            { label: "HTMX", value: "htmx", hint: "NOT YET IMPLEMENTED" },
           ],
           initialValue: "none",
         });
