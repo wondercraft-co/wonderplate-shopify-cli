@@ -48,5 +48,5 @@ Go to the `layout/theme.liquid` file and add the following code:
 
 ```liquid
 <script src="{{ 'app.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'main.css' | asset_url }}" defer="defer"></script>
+<link rel="stylesheet" href="{{ 'styles.css' | asset_url }}">
 ```
